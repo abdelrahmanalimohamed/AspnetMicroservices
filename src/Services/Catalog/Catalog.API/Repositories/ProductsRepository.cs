@@ -1,16 +1,14 @@
-﻿using Catalog.API.Data;
-using Catalog.API.Entities;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using Catalog.API.Data;
+using Catalog.API.Entities;
+using MongoDB.Driver;
 
 namespace Catalog.API.Repositories
 {
     public class ProductsRepository : IProductsRepository
     {
-
         private readonly ICatalogContext catalogContext;
 
         public ProductsRepository(ICatalogContext _catalogContext)
@@ -29,13 +27,10 @@ namespace Catalog.API.Repositories
             DeleteResult deleteResult = await catalogContext.Products.DeleteOneAsync(filter);
 
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
-
-
         }
 
         public async Task<Products> GetProduct(string id)
         {
-
             return await catalogContext.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
