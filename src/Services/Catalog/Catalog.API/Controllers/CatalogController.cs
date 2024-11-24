@@ -22,8 +22,7 @@ namespace Catalog.API.Controllers
             this._logger = logger;
         }
 
-        [HttpGet("",Name ="GetProducts")]
-        [Route("[action]/{category}", Name = "GetProducts")]
+        [HttpGet(Name = "GetProductsList")]
         [ProducesResponseType(typeof(IEnumerable<Products>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Products>>> GetProductsList()
         {
@@ -31,8 +30,7 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("[action]/{category}", Name = "GetProductByCategory")]
+        [HttpGet("category/{categoryName}", Name = "GetProductsByCategoryName")]
         [ProducesResponseType(typeof(IEnumerable<Products>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Products>>> GetProductsByCategoryName (string CategoryName)
         {
