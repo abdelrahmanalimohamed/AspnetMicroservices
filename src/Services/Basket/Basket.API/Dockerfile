@@ -11,8 +11,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/Basket/Baskey.API/Basket.API.csproj", "Serivces/Basket/Basket.API/"]
-RUN dotnet restore "Services/Basket/Baskey.API/Basket.API.csproj"
+COPY ["Services/Basket/Basket.API/Basket.API.csproj", "/Basket.API/"]
+RUN dotnet restore "./Services/Basket/Basket.API/Basket.API.csproj"
 COPY . .
 WORKDIR "/src/Services/Basket/Basket.API"
 RUN dotnet build "./Basket.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
