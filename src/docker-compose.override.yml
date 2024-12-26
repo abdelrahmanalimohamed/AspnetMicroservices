@@ -58,6 +58,16 @@ services:
       - ${appdata}/microsoft/usersecrets:/root/.microsoft/usersecrets:ro
       - ${appdata}/asp.net/https:/root/.aspnet/https:ro
 
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    depends_on:
+       - discountdb
+    ports:
+      - "8002:80"
+
 volumes:
   postgres_data:
-  pgadmin_data:  
+  pgadmin_data:
+  mongo_data:
